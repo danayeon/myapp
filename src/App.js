@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [currentCount, setCurrentCount] = useState(0);
+
+  const handleAdd = () => setCurrentCount(Math.min(currentCount + 1, 100));
+  const handleSub = () => setCurrentCount(Math.max(currentCount - 1, 0));
+  const handleMul = () => setCurrentCount(Math.min(currentCount * 2, 100));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div>
+        <button id="add" onClick={handleAdd}>
+          +1
+        </button>
+        <button id="sub" onClick={handleSub}>
+          -1
+        </button>
+        <button id="mul" onClick={handleMul}>
+          *2
+        </button>
+      </div>
+      <div id="display">
+        {currentCount}
+      </div>
     </div>
   );
 }
